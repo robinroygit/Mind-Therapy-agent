@@ -26,17 +26,17 @@ app.use(cors({
 
 
 // Serve the frontend
-app.use(express.static(path.join(__dirname,'..','public/dist/')));
+app.use(express.static(path.join(__dirname,'..','public/build/')));
 
 // app.use(express.static("public"))
 app.use(express.json({ limit: '10mb' })); //will support large base64 file
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
-app.use(express.static("public/dist"))
+app.use(express.static("public/build"))
 app.use(cookieParser())
 
 // Fallback for client-side routing
 app.get('', (req, res) => {
-        res.sendFile(path.join(__dirname,'..','public/dist/index.html'));
+        res.sendFile(path.join(__dirname,'..','public/build/index.html'));
   });
   
 app.use("/api/v1/user",userRouter);
